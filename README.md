@@ -1,13 +1,16 @@
 # game_sm
 Сила Мысли Игра
 
-Must be run with Python 3.10 or higher.
+Must be run with Python 3.9 or higher.
 # Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 # The new requirements.txt file creation
+Attention! This will overwrite the existing "requirements.txt" file.
+To silence this warning use ```--strip-extras``` to opt into the new default
+or use ```--no-strip-extras``` to retain the existing behavior
 
 ```bash
 pip install pip-tools
