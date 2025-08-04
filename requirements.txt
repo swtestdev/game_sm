@@ -65,7 +65,9 @@ xlsxwriter==3.1.0
     # via python-pptx
 zipp==3.19.1
     # via importlib-metadata
-
+psutil~=7.0.0
+customtkinter~=5.2.2
+Telethon~=1.40.0
 # The following packages are considered to be unsafe in a requirements file:
 # pip
 # setuptools

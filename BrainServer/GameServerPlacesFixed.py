@@ -13,6 +13,8 @@ from tkinter import filedialog
 import json
 import os
 import codecs
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
 
 server = None
 # game_id: int = 0
@@ -365,7 +367,7 @@ def set_places():
     if len(game_score) != 0 and "None" not in str(game_score):
         workbook = openpyxl.load_workbook(file_results)
         sheet = workbook[workbook.sheetnames[0]]
-        if sheet.cell(row=1, column=1).value == '#' and sheet.cell(row=1, column=2).value == 'Название':
+        if sheet.cell(row=1, column=1).value == '#' and sheet.cell(row=1, column=2).value == 'КОМАНДЫ':  # Название
             team_count = 0
             for i in range(2, 50):
                 if sheet.cell(row=i, column=2).value is not None:
@@ -382,6 +384,9 @@ def set_places():
                 if team_count % 2 != 0:
                     game_score["ЗОЛОТАЯ СЕРЕДИНА"].Text = sheet.cell(row=team_count // 2 + 2, column=2).value
                     update_log_display(f"ЗОЛОТАЯ СЕРЕДИНА: {sheet.cell(row=team_count // 2 + 2, column=2).value}")
+                else:
+                    game_score["ЗОЛОТАЯ СЕРЕДИНА"].Text = sheet.cell(row=team_count // 2 + 1, column=2).value
+                    update_log_display(f"ЗОЛОТАЯ СЕРЕДИНА: {sheet.cell(row=team_count // 2 + 1, column=2).value}")
 
                 game_score["ЗАЩИТА ТЫЛА"].Text = sheet.cell(row=team_count, column=2).value
                 update_log_display(f"ЗАЩИТА ТЫЛА: {sheet.cell(row=team_count, column=2).value}")
