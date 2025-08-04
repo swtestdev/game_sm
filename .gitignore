@@ -49,7 +49,6 @@ coverage.xml
 work_folder/
 temp_folder/
 build/
-dist/
 *.egg-info/
 *.egg
 

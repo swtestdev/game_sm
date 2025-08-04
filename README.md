@@ -27,6 +27,10 @@ pip install -r requirements.txt
 ```
 # Run the game with EXE files of the `TelegramNotifierApp` or `AppGame`:
 Download the latest release and create the following/required files:
+- `TelegramNotifierApp.exe` must be used with `telegram_notifier_session.session`
+and (as an option) for adding a new messages `messages.json` (both must be located in the same folder as the EXE file)
+See the Excel file format/example to send messages: `TelegramListToSend.xlsx`
+![img.png](ResultsReporter/dist/img.png)
 - `config.py` - the configuration file with the parameters for the game
 - `questions.json` - the file with the questions and answer for the game
 - `teams.json` - the file with the team list allow playing in the game#
@@ -35,10 +39,19 @@ Download the latest release and create the following/required files:
 # Details related to the Telegram notifier `TelegramNotifierApp.py` file
 Here is a Python script that will load parameters from an external file 
 (if it exists, and otherwise will use default parameters defined inside the main script)
-- SOON
+- `TelegramNotifierApp.exe` must be used with `telegram_notifier_session.session`
+and (as an option) for adding a new messages `messages.json` (both must be located in the same folder as the EXE file)
+- See the Excel file format/example to send messages: `TelegramListToSend.xlsx`
+![img.png](ResultsReporter/dist/img.png)
 
 # Usage
-SOON
+When you created AppAPI in Telegram and know the *api_id* and *api_hash*.
+For one of the teams exists in both Sheets (1&2) in the `TelegramListToSend.xlsx` file 
+add the phone-number one of your contacts.
+Open the APP enter the *api_id* and *api_hash* and load this xlsx file,
+then press on the "Send Notification" button.
+Check the console and answer to the questions asked the Telegram the first time
+during the `telegram_notifier_session.session` file generation
 
 # Details related to the game Application `AppGame.py` file
 Here is a Python script that will load parameters from an external file
