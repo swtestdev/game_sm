@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+
+# Virtual environments
+.venv*/
+venv/
+ENV/
+env/
+*.env
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Excel/PowerPoint temp files
+~$*
+
+# Test and coverage reports
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Build artifacts
+work_folder/
+temp_folder/
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Other
+*.bak
+*.swp
+*.swo
+*.session

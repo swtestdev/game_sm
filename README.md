@@ -15,7 +15,8 @@
 Must be run with Python 3.9 or higher the packages installed in the `requirements.txt` file. If using:
  - the `AppGame.py` file
  - the `TelegramNotifierApp.py` file (Create your own an application https://core.telegram.org/api/.
-toget api_id and api_hash (add them to your ENV as TELEGRAM_API_ID and TELEGRAM_API_HASH accordingly or provide them as input).
+to get the *api_id* and *api_hash* credential to use the APP for the messages sending
+(add them to your ENV as TELEGRAM_API_ID and TELEGRAM_API_HASH accordingly or provide them as input).
 During the first message sending should be created ```telegram_notifier_session.session```
  - Existing EXE files of the APP compiled with all the environment to use on Windows 10/11
 
