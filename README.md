@@ -42,6 +42,7 @@ Here is a Python script that will load parameters from an external file
 - `TelegramNotifierApp.exe` must be used with `telegram_notifier_session.session`
 and (as an option) for adding a new messages `messages.json` (both must be located in the same folder as the EXE file)
 - See the Excel file format/example to send messages: `TelegramListToSend.xlsx`
+
 ![img.png](ResultsReporter/dist/img.png)
 
 # Usage
