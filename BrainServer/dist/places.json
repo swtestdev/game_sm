@@ -1,0 +1,13 @@
+{
+    "_comment_DEFINITION": "All the keys below are secretive words.",
+    "PLACES": [["1 МЕСТО","ПОБЕДИТЕЛИ!"],
+        "2 МЕСТО", "3 МЕСТО", "ЗОЛОТАЯ СЕРЕДИНА",
+        ["ЗАЩИТА ТЫЛА","МЫ СТАРАЛИСЬ!"]],
+    "_comment_PLACES": "The places setting order 1st, 2nd, 3rd, middle, last (Nested lists are synonyms).",
+    "EVEN": true,
+    "_comment_EVEN": "MIDDLE allowed for even number of teams.",
+    "ODD": true,
+    "_comment_ODD": "MIDDLE allowed for odd number of teams.",
+    "LAST": false,
+    "_comment_LAST": "True for the last team or False for before last team in the teams list"
+}
