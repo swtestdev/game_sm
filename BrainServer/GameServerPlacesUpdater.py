@@ -314,7 +314,14 @@ def get_teams_ordered_from_excel_file(file_results="results.xlsx"):
     :returns: (list) a list of team names is ordered by results.
     """
     workbook = openpyxl.load_workbook(file_results)
-    sheet = workbook[workbook.sheetnames[0]]
+    sheet_name = 'AllResultsOnTable'  # default name for the first sheet required
+    if sheet_name in workbook.sheetnames:
+        sheet = workbook[sheet_name]
+    else:
+        sheet_name = workbook.sheetnames[0]
+        sheet = workbook[sheet_name]
+
+    # sheet = workbook[workbook.sheetnames[0]]
     team_list = []
     if sheet.cell(row=1, column=1).value == '#' and sheet.cell(row=1, column=2).value == 'КОМАНДЫ':  # Название
         for i in range(2, 50):
