@@ -14,23 +14,31 @@
 # Requirements
 Must be run with Python 3.9 or higher the packages installed in the `requirements.txt` file. If using:
  - the `AppGame.py` file
+ - the `GameServerPlacesUpdater.py` file
  - the `TelegramNotifierApp.py` file (Create your own an application https://core.telegram.org/api/.
 to get the *api_id* and *api_hash* credential to use the APP for the messages sending
 (add them to your ENV as TELEGRAM_API_ID and TELEGRAM_API_HASH accordingly or provide them as input).
 During the first message sending should be created ```telegram_notifier_session.session```
  - Existing EXE files of the APP compiled with all the environment to use on Windows 10/11
 
-# Installation to run the game with Python files
+# Installation to run the Python scripts/apps
 
 ```bash
 pip install -r requirements.txt
 ```
-# Run the game with EXE files of the `TelegramNotifierApp` or `AppGame`:
+# Run the game with EXE files of the `TelegramNotifierApp` or `AppGame` or `GameServerPlacesUpdater`:
 Download the latest release and create the following/required files:
 - `TelegramNotifierApp.exe` must be used with `telegram_notifier_session.session`
 and (as an option) for adding a new messages `messages.json` (both must be located in the same folder as the EXE file)
 See the Excel file format/example to send messages: `TelegramListToSend.xlsx`
+(check the description Tab/Sheet for more details).
+
 ![img.png](ResultsReporter/dist/img.png)
+- `GameServerPlacesUpdater.exe` - the EXE file that will update the game places in the PowerPoint file
+based on the `results.xlsx` file and the `places.json` file setting.
+The Excel file should be received and saved in the same place as is the EXE file.
+The JSON file setting used to define the places' names and some rules about the setup the middle and last places.
+(check for more details the 'description Tab/Sheet' in Excel and the '_comment_' in JSON).
 - `config.py` - the configuration file with the parameters for the game
 - `questions.json` - the file with the questions and answer for the game
 - `teams.json` - the file with the team list allow playing in the game#

@@ -235,8 +235,13 @@ class TelegramNotifierApp(ctk.CTk):
                 raise ValueError("Not enough sheets")
 
             # --- Parse Sheet 1: Team Names + Results ---
-            sheet1_name = workbook.sheetnames[0]
-            sheet1 = workbook[sheet1_name]
+            sheet1_name = 'ResultsToSend'  # default name for the first sheet required
+            if sheet1_name in workbook.sheetnames:
+                sheet1 = workbook[sheet1_name]
+            else:
+                sheet1_name = workbook.sheetnames[0]
+                sheet1 = workbook[sheet1_name]
+
             headers1 = [str(cell.value).upper().strip() if cell.value is not None else "" for cell in sheet1[1]]
             try:
                 team_name_col_idx1 = headers1.index("КОМАНДЫ")  # Find the starting index for "КОМАНДЫ"
@@ -264,8 +269,13 @@ class TelegramNotifierApp(ctk.CTk):
                     team_results[str(team).strip()] = result if result else "N\\A"
 
             # --- Parse Sheet 2: Team Names + Telegram Phone Numbers ---
-            sheet2_name = workbook.sheetnames[1]
-            sheet2 = workbook[sheet2_name]
+            sheet2_name = 'TeamsPhones'  # default name for the second sheet required
+            if sheet2_name in workbook.sheetnames:
+                sheet2 = workbook[sheet2_name]
+            else:
+                sheet2_name = workbook.sheetnames[1]
+                sheet2 = workbook[sheet2_name]
+
             if str(sheet2['A1'].value).upper().strip() != "КОМАНДЫ":
                 errors.append(f"Sheet 2 ('{sheet2_name}'): Cell A1 must be 'КОМАНДЫ'.")
             else:
