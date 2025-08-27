@@ -315,6 +315,8 @@ def get_teams_ordered_from_excel_file(file_results="results.xlsx"):
     """
     workbook = openpyxl.load_workbook(file_results)
     sheet_name = 'AllResultsOnTable'  # default name for the first sheet required
+    update_log_display(f"Looks for sheet: '{sheet_name}' in the file:\n" + str(file_results))
+    print(f"Looks for sheet: '{sheet_name}' in the file:" + str(file_results))
     if sheet_name in workbook.sheetnames:
         sheet = workbook[sheet_name]
     else:
@@ -323,12 +325,16 @@ def get_teams_ordered_from_excel_file(file_results="results.xlsx"):
 
     # sheet = workbook[workbook.sheetnames[0]]
     team_list = []
+    update_log_display("Looks for 'КОМАНДЫ' column")
+    print("Looks for 'КОМАНДЫ' column")
     if sheet.cell(row=1, column=1).value == '#' and sheet.cell(row=1, column=2).value == 'КОМАНДЫ':  # Название
         for i in range(2, 50):
             if sheet.cell(row=i, column=2).value is not None:
                 team_list.append(sheet.cell(row=i, column=2).value)
             else:
                 break
+    update_log_display("Team list: " + str(team_list))
+    print("Team list: " + str(team_list))
     return team_list
 
 def set_places_with_teams_in_opened_pptx(team_list:list, config_path="places.json"):
@@ -352,9 +358,11 @@ def set_places_with_teams_in_opened_pptx(team_list:list, config_path="places.jso
 
     if not config or not isinstance(config, dict):
         update_log_display(ERR0)
+        print(ERR0)
         return ERR0
     if len(config_keys) < 3:
         update_log_display(ERR1)
+        print(ERR0)
         return ERR1
 
     # Set up teams into middle and last places:
@@ -371,32 +379,45 @@ def set_places_with_teams_in_opened_pptx(team_list:list, config_path="places.jso
         _last = team_list[int(len(team_list)-1)]
     elif not config.get("LAST") and len(team_list) >= 5:
         _last = team_list[int(len(team_list)-2)]
-
+    update_log_display(f"Configuration loaded properly from: {config_path}")
+    print(f"Configuration loaded properly from: {config_path}")
 
     # Connect to opened PowerPoint
     try:
         app = win32com.client.GetActiveObject("PowerPoint.Application")
+        update_log_display("Connected to PowerPoint")
+        print("Connected to PowerPoint")
     except Exception as e:
         update_log_display(f"Error connecting to PowerPoint: {e}")
         update_log_display(ERR2)
+        print(f"Error connecting to PowerPoint: {e}")
         return ERR2
 
     if app.Presentations.Count != 1:
         # raise RuntimeError(f"Expected exactly one opened PowerPoint file, found {app.Presentations.Count}.")
         update_log_display(ERR3.format(app.Presentations.Count))
+        print(ERR3.format(app.Presentations.Count))
         return ERR3.format(app.Presentations.Count)
 
     if len(team_list)< 3:
         update_log_display(ERR4)
+        print(ERR4)
         return ERR4
 
     presentation = app.ActivePresentation
     slide_count = presentation.Slides.Count
     update_log_display(f"Slides in file: {slide_count}")
+    print(f"Slides in file: {slide_count}")
+    if slide_count < 1:
+        update_log_display("No slides found in the presentation.")
+        print("No slides found in the presentation.")
+        return "Error: No slides found in the presentation."
 
     messagebox_txt = None
     for i in range(slide_count // 2 + 1, slide_count + 1):
         slide = presentation.Slides(i)
+        update_log_display("Scanning Slide #: " + str(i))
+        print("Scanning Slide #: " + str(i))
         title_found = -1
         title_text = ''
         for shape in slide.Shapes:
@@ -423,6 +444,7 @@ def set_places_with_teams_in_opened_pptx(team_list:list, config_path="places.jso
                 res = str(shape.TextFrame.TextRange.Text)
                 update_log_display(
                     f"Wining Place '{title_text}' by team: '{res}'")
+                print(f"Wining Place '{title_text}' by team: '{res}'")
                 if messagebox_txt is None:
                     messagebox_txt = f"'{title_text}' ==> '{res}'\n"
                 else:
